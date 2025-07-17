@@ -274,7 +274,6 @@ function loadPaymentDataFromLocalStorage() {
             { semester: 'Semester 4 (Genap 2023/2024)', amount: 2750000, date: '-', status: 'Lunas', file: 'dummy_slip4.jpg', token: 'UKT2024GenapA' },
             { semester: 'Semester 5 (Ganjil 2024/2025)', amount: 2750000, date: '-', status: 'Lunas', file: 'dummy_slip5.jpg', token: 'UKT2024GanjilB' },
             { semester: 'Semester 6 (Genap 2024/2025)', amount: 2750000, date: '-', status: 'Lunas', file: 'dummy_slip6.jpg', token: 'UKT2025GenapA' },
-            { semester: 'Semester 7 (Genap 2025/2026)', amount: 1400000, date: '17-7-2025', status: 'Parsial', file: 'SLIP7.jpg', token: 'UKT2025GenapA' },
             
         ],
         // Pertahankan data mahasiswa lain jika ada, atau hapus jika tidak diperlukan
