@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Informasi Mahasiswa Universitas Raden Rahmat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="loginSection">
+            <div class="header">
+                <h1>🎓 Sistem Informasi Mahasiswa</h1>
+                <p>Portal Akademik dan Pembayaran Universitas Raden Rahmat</p>
+            </div>
+
+            <div class="login-section">
+                <h3 style="margin-bottom: 20px; color: #333;">Masuk ke Akun Anda</h3>
+
+                <div id="loginError" class="error hidden"></div>
+
+                <div class="form-group">
+                    <label for="nim">Nomor Induk Mahasiswa (NIM)</label>
+                    <input type="text" id="nim" placeholder="Masukkan NIM Anda">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Masukkan password">
+                </div>
+
+                <button class="btn" onclick="login()">Masuk</button>
+                <button class="btn btn-secondary" onclick="window.open('privacy.html', '_blank')">Baca Ketentuan</button>
+            </div>
+        </div>
+
+        <div id="profileSection" class="hidden">
+            <div class="header">
+                <h1>🎓 Dashboard Mahasiswa</h1>
+                <button class="btn btn-logout" onclick="logout()">Keluar</button>
+                <div style="clear: both;"></div>
+            </div>
+
+            <div class="nav-menu">
+                <button class="nav-item active" id="menuProfile" onclick="showContent('profileContent')">Profil</button>
+                <button class="nav-item" id="menuAkademik" onclick="showContent('akademikContent')">Akademik</button>
+                <button class="nav-item" id="menuPayments" onclick="showContent('paymentHistoryContent')">Riwayat Pembayaran</button>
+                <button class="nav-item" id="menuUpload" onclick="showContent('uploadPaymentContent')">Upload Pembayaran</button>
+                <button class="nav-item" id="menuDosen" onclick="showContent('dosenContent')">Dosen</button> </div>
+
+            <div id="profileContent" class="content-section">
+                <div class="profile-section">
+                    <h3 style="margin-bottom: 20px; color: #333;">Informasi Profil & Biodata</h3>
+                    <div class="profile-info grid-2-columns"> <div class="info-item">
+                            <div class="info-label">Nama Lengkap</div>
+                            <div class="info-value" id="profileNama"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">NIM</div>
+                            <div class="info-value" id="profileNim"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Program Studi</div>
+                            <div class="info-value" id="profileProdi"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Angkatan</div>
+                            <div class="info-value" id="profileAngkatan"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Fakultas</div>
+                            <div class="info-value" id="profileFakultas"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Status</div>
+                            <div class="info-value" id="profileStatus"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">IPK</div>
+                            <div class="info-value" id="ipkValue">0.00</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Tanggal Lahir</div>
+                            <div class="info-value" id="profileTglLahir"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Tempat Lahir</div>
+                            <div class="info-value" id="profileTempatLahir"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Jenis Kelamin</div>
+                            <div class="info-value" id="profileJenisKelamin"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Alamat</div>
+                            <div class="info-value" id="profileAlamat"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Email</div>
+                            <div class="info-value" id="profileEmail"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Telepon</div>
+                            <div class="info-value" id="profileTelepon"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-card lunas">
+                        <div class="stat-number" id="statLunas">0</div>
+                        <div class="stat-label">Semester Lunas</div>
+                    </div>
+                    <div class="stat-card belum">
+                        <div class="stat-number" id="statBelum">0</div>
+                        <div class="stat-label">Belum Lunas</div>
+                    </div>
+                    <div class="stat-card total">
+                        <div class="stat-number" id="statTotal">Rp 0</div>
+                        <div class="stat-label">Total Dibayar</div>
+                    </div>
+                    <div class="stat-card progress">
+                        <div class="stat-number" id="statProgress">0%</div>
+                        <div class="stat-label">Progress Pembayaran</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="akademikContent" class="content-section hidden">
+                <div class="academic-section">
+                    <h3>📊 Riwayat Nilai Mata Kuliah</h3>
+                    <div id="nilaiList" class="data-list">
+                        </div>
+                </div>
+
+                <div class="academic-section">
+                    <h3>📚 Mata Kuliah Terselesaikan</h3>
+                    <div id="matkulSelesaiList" class="data-list">
+                        </div>
+                </div>
+
+                <div class="academic-section">
+                    <h3>🏆 UKM & Kegiatan Kemahasiswaan</h3>
+                    <div id="ukmList" class="data-list">
+                        </div>
+                </div>
+
+                <div class="academic-section">
+                    <h3>📈 KKN & PKL Score</h3>
+                    <div class="score-card-wrapper">
+                        <div class="score-card">
+                            <h4>KKN Score</h4>
+                            <div class="score-value" id="kknScore">-</div>
+                        </div>
+                        <div class="score-card">
+                            <h4>PKL Score</h4>
+                            <div class="score-value" id="pklScore">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="academic-section">
+                    <h3>💡 Proyek Mahasiswa</h3>
+                    <div id="projectList" class="data-list">
+                        </div>
+                </div>
+            </div>
+
+            <div id="paymentHistoryContent" class="content-section hidden">
+                <div class="payment-history">
+                    <div class="payment-header">
+                        📋 Riwayat Pembayaran UKT
+                    </div>
+                    <div id="paymentList"></div>
+                </div>
+            </div>
+
+            <div id="uploadPaymentContent" class="content-section hidden">
+                <div class="upload-section">
+                    <h3 style="margin-bottom: 20px; color: #333;">Upload Bukti Pembayaran UKT</h3>
+                    <div id="uploadMessage" class="error hidden"></div>
+
+                    <form id="uploadForm">
+                        <div class="form-group">
+                            <label for="semesterInput">Semester</label>
+                            <input type="text" id="semesterInput" list="semesterList" placeholder="Contoh: Semester 1 (Ganjil 2023/2024)">
+                            <datalist id="semesterList"></datalist>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="paymentAmount">Nominal Pembayaran</label>
+                            <input type="text" id="paymentAmount" placeholder="Contoh: 2750000">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="paymentToken">Token Pembayaran</label>
+                            <input type="text" id="paymentToken" placeholder="Masukkan token pembayaran Anda (misal: UKT2024Ganjil)">
+                            <small class="form-hint">Token diberikan oleh bagian keuangan setelah Anda melakukan pembayaran.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="slipFile">Pilih File Slip Pembayaran (JPG, PNG, PDF - Max 5MB)</label>
+                            <input type="file" id="slipFile" accept=".jpg, .jpeg, .png, .pdf">
+                        </div>
+
+                        <button type="submit" class="btn">Upload Pembayaran</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="dosenContent" class="content-section hidden">
+                <div class="dosen-section">
+                    <h3>👨‍🏫 Daftar Dosen Pengajar</h3>
+                    <div id="dosenList" class="data-list">
+                        </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
